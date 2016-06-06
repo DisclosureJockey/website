@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/gorilla/mux"
+	//"github.com/gorilla/mux"
 	//"github.com/gorilla/sessions"
 	"log"
 	"net/http"
@@ -14,12 +14,10 @@ func main() {
 	fmt.Printf("Starting DisclosureJockey server...\n")
 	fmt.Printf("Version v%s\n", version)
 
-	r := mux.NewRouter()
-	r.HandleFunc("/pages", includeHandler)
-	r.HandleFunc("/css", includeHandler)
-	r.HandleFunc("/js", includeHandler)
-	r.HandleFunc("/", HomeHandler)
-	http.Handle("/", r)
+	http.HandleFunc("/pages/", includeHandler)
+	http.HandleFunc("/css/", includeHandler)
+	//http.HandleFunc("/js", includeHandler)
+	http.HandleFunc("/", HomeHandler)
 
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
